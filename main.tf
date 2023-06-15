@@ -25,7 +25,7 @@ resource "aws_internet_gateway" "kali_igw" {
 resource "aws_subnet" "kali_subnet" {
   vpc_id     = aws_vpc.kali_vpc.id
   cidr_block = "10.0.0.0/24"  # Update with your desired subnet CIDR block
-  availability_zone = "us-east-1a"  # Update with your desired availability zone
+  availability_zone = "ap-south-1"  # Update with your desired availability zone
 
   tags = {
     Name = "kali-subnet"
