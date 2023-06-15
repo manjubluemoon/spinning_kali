@@ -15,7 +15,7 @@ variable "subnet_cidr_block" {
 
 variable "availability_zone" {
   description = "Availability zone for the subnet"
-  default     = "us-east-1a"
+  default     = "ap-south-1"
 }
 
 variable "ami_id" {
