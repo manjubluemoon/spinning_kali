@@ -1,11 +1,11 @@
 # Provider configuration
 provider "aws" {
-  region = "ap-south-1"  # Update with your desired region
+  region = var.region
 }
 
 # VPC resource
 resource "aws_vpc" "kali_vpc" {
-  cidr_block = "10.0.0.0/16"  # Update with your desired VPC CIDR block
+  cidr_block = var.vpc_cidr_block
 
   tags = {
     Name = "kali-vpc"
@@ -24,8 +24,8 @@ resource "aws_internet_gateway" "kali_igw" {
 # Subnet resource
 resource "aws_subnet" "kali_subnet" {
   vpc_id     = aws_vpc.kali_vpc.id
-  cidr_block = "10.0.0.0/24"  # Update with your desired subnet CIDR block
-  availability_zone = "ap-south-1a"  # Update with your desired availability zone
+  cidr_block = var.subnet_cidr_block
+  availability_zone = var.availability_zone
 
   tags = {
     Name = "kali-subnet"
@@ -62,12 +62,11 @@ resource "aws_eip" "kali_eip" {
   }
 }
 
-
 # EC2 Instance resource
 resource "aws_instance" "kali_instance" {
-  ami                    = "ami-0123456789abcdef"  # Replace with the correct Kali Linux AMI ID
+  ami                    = var.ami_id
   instance_type          = "t2.micro"  # Update with your desired instance type
-  key_name               = "kali-key"  # Replace with the name of your key pair
+  key_name               = var.key_pair_name
   vpc_security_group_ids = [aws_security_group.kali_sg.id]
   subnet_id              = aws_subnet.kali_subnet.id
   associate_public_ip_address = true
