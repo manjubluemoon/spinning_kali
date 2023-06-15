@@ -31,7 +31,7 @@ variable "key_pair_name" {
 variable "SSH_PRIVATE_KEY" {
   description = "Private key for SSH access"
   type        = string
-  default     = "-----BEGIN RSA PRIVATE KEY-----
+  default     = <<EOT-----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAnytwLIsw6F3vje43ZbCipSm1Z230hHrPKavoDP0X1sKJ4zby
 C4J01HMUMl6fdKNtgIlaUJ+mKuyE80BidHzSTRTs139Q2R8ja3vvtXbtzv/QD4rD
 JhHyvI4XfWT+BCgeffqlbWv6K2PdaSH5MgwM3Tss98cgT7FYe5Qp4TCHoMXOzCee
@@ -57,5 +57,5 @@ kLiHGfaJTTed7+4ILRY0/7NDT2M4iVUlrx366hRaK1CfXmL057HMiY74dEBg+FqH
 BJY0OQKBgQC51+LMfmK9qXF1GhgYeM07zUXHCg0btDxKXJBthYWRpXgSdyBaBeop
 imJew0c1i9YHMZoryQ18XvbFReCOaSCWrtqKYr5oOVsSKCsm7cD+9r3NUNonb3Vy
 4gnV+ZHXlNxgyGoJ0B2OM51fiSqOqk+jFauF8qXkbMaqBtXTomsfzg==
------END RSA PRIVATE KEY-----"
+-----END RSA PRIVATE KEY-----EOT
 }
