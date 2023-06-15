@@ -55,12 +55,13 @@ resource "aws_security_group" "kali_sg" {
 
 # Elastic IP resource
 resource "aws_eip" "kali_eip" {
-  vpc = true
+  domain = "vpc"  # Specify the domain as "vpc" for a VPC-specific Elastic IP
 
   tags = {
     Name = "kali-eip"
   }
 }
+
 
 # EC2 Instance resource
 resource "aws_instance" "kali_instance" {
