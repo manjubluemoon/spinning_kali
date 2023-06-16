@@ -70,11 +70,17 @@ resource "aws_instance" "kali_instance" {
   vpc_security_group_ids = [aws_security_group.kali_sg.id]
   subnet_id              = aws_subnet.kali_subnet.id
   associate_public_ip_address = true
-
   tags = {
     Name = "kali-instance"
   }
 }
+
+# Elastic IP Association resource
+resource "aws_eip_association" "kali_eip_assoc" {
+  instance_id   = aws_instance.kali_instance.id
+  allocation_id = aws_eip.kali_eip.id
+}
+
 
 # Output the public IP address of the instance
 output "public_ip" {
