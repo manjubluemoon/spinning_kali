@@ -25,7 +25,7 @@ variable "ami_id" {
 
 variable "key_pair_name" {
   description = "Name of the SSH key pair"
-  default     = "kali-key"
+  default     = "Kali Linux KP"
 }
 
 variable "SSH_PRIVATE_KEY" {
