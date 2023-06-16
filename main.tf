@@ -54,12 +54,6 @@ resource "aws_route" "kali_route" {
   gateway_id                = aws_internet_gateway.kali_igw.id
 }
 
-# Associate Subnet with Routing Table
-resource "aws_route_table_association" "kali_route_table_association" {
-  subnet_id      = aws_subnet.kali_subnet.id
-  route_table_id = aws_route_table.kali_route_table.id
-}
-
 # Security Group resource
 resource "aws_security_group" "kali_sg" {
   name        = "kali-sg"
