@@ -54,16 +54,6 @@ resource "aws_route" "kali_route" {
   gateway_id                = aws_internet_gateway.kali_igw.id
 }
 
-# Subnet resource
-resource "aws_subnet" "kali_subnet" {
-  vpc_id     = aws_vpc.kali_vpc.id
-  cidr_block = "10.0.0.0/24"  # Update with your desired subnet CIDR block
-
-  tags = {
-    Name = "kali-subnet"
-  }
-}
-
 # Associate Subnet with Routing Table
 resource "aws_route_table_association" "kali_route_table_association" {
   subnet_id      = aws_subnet.kali_subnet.id
