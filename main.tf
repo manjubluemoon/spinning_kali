@@ -32,6 +32,44 @@ resource "aws_subnet" "kali_subnet" {
   }
 }
 
+# Attach Internet Gateway to VPC
+resource "aws_vpc_attachment" "kali_igw_attachment" {
+  vpc_id             = aws_vpc.kali_vpc.id
+  internet_gateway_id = aws_internet_gateway.kali_igw.id
+}
+
+# Routing Table resource
+resource "aws_route_table" "kali_route_table" {
+  vpc_id = aws_vpc.kali_vpc.id
+
+  tags = {
+    Name = "kali-route-table"
+  }
+}
+
+# Add Route to Routing Table
+resource "aws_route" "kali_route" {
+  route_table_id            = aws_route_table.kali_route_table.id
+  destination_cidr_block    = "0.0.0.0/0"
+  gateway_id                = aws_internet_gateway.kali_igw.id
+}
+
+# Subnet resource
+resource "aws_subnet" "kali_subnet" {
+  vpc_id     = aws_vpc.kali_vpc.id
+  cidr_block = "10.0.0.0/24"  # Update with your desired subnet CIDR block
+
+  tags = {
+    Name = "kali-subnet"
+  }
+}
+
+# Associate Subnet with Routing Table
+resource "aws_route_table_association" "kali_route_table_association" {
+  subnet_id      = aws_subnet.kali_subnet.id
+  route_table_id = aws_route_table.kali_route_table.id
+}
+
 # Security Group resource
 resource "aws_security_group" "kali_sg" {
   name        = "kali-sg"
