@@ -70,6 +70,7 @@ resource "aws_instance" "kali_instance" {
   vpc_security_group_ids = [aws_security_group.kali_sg.id]
   subnet_id              = aws_subnet.kali_subnet.id
   associate_public_ip_address = true
+
   tags = {
     Name = "kali-instance"
   }
