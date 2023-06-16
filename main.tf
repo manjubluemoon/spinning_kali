@@ -32,10 +32,10 @@ resource "aws_subnet" "kali_subnet" {
   }
 }
 
-# Attach Internet Gateway to VPC
-resource "aws_vpc_attachment" "kali_igw_attachment" {
-  vpc_id             = aws_vpc.kali_vpc.id
-  internet_gateway_id = aws_internet_gateway.kali_igw.id
+# Associate Subnet with Main Route Table
+resource "aws_main_route_table_association" "kali_route_table_association" {
+  vpc_id         = aws_vpc.kali_vpc.id
+  route_table_id = aws_route_table.kali_route_table.id
 }
 
 # Routing Table resource
